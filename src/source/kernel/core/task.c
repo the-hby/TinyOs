@@ -539,10 +539,7 @@ exec_failed:
 file_t* task_file(int fd){
     if((fd>=0) && (fd<TASK_OFILE_NR)){
         file_t* file=task_current()->file_table[fd];
-<<<<<<< HEAD
         return file;
-=======
->>>>>>> 7a60b61c1d68829ee46cfe379676054c4dcbdf6b
     }
 
     return (file_t*)0;

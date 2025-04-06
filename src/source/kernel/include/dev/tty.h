@@ -7,16 +7,12 @@
 // tty设备的缓存大小
 #define TTY_OBUF_SIZE  512
 #define TTY_IBUF_SIZE  512
-<<<<<<< HEAD
 
 #define TTY_OCRLF      (1<<0) // 换行时输出\r\n
 
 #define TTY_INCLR      (1<<0) 
 #define TTY_IECHO      (1<<1) // 输入时回显
 
-=======
-#define TTY_OCRLF      (1<<0) // 换行时输出\r\n
->>>>>>> 7a60b61c1d68829ee46cfe379676054c4dcbdf6b
 // 终端设备的个数
 #define TTY_NR  8
 
@@ -44,13 +40,10 @@ typedef struct _tty_t{
     // 输出信号量
     sem_t osem;
 
-<<<<<<< HEAD
     // 输入信号量
     sem_t isem;
 
     int iflags; // 输入标志
-=======
->>>>>>> 7a60b61c1d68829ee46cfe379676054c4dcbdf6b
     int oflags; // 输出标志
 }tty_t;
 
@@ -63,9 +56,6 @@ void tty_close(device_t* dev);
 void tty_fifo_init(tty_fifo_t* fifo,char* buf,int size);
 int tty_fifo_put(tty_fifo_t* fifo,char c);
 int tty_fifo_get(tty_fifo_t* fifo,char* c);
-<<<<<<< HEAD
 
 void tty_in(int idx,char ch);
-=======
->>>>>>> 7a60b61c1d68829ee46cfe379676054c4dcbdf6b
 #endif
