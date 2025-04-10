@@ -63,7 +63,7 @@
 #define ERR_EXT             (1 << 0)
 #define ERR_IDT             (1 << 1)
 
-// 该数据结构为了存储中断前各寄存器状态值
+/// @brief 存储中断前各寄存器状态值
 typedef struct _exception_frame_t{
     uint32_t gs,fs,es,ds;
     uint32_t edi,esi,ebp,esp,ebx,edx,ecx,eax;
@@ -84,7 +84,7 @@ int irq_install(int irq_num,irq_handler_t handler);
 // 在init/Start.S中
 void exception_handler_unknown(void);
 
-// 设置除0异常处理函数
+/// @brief 设置除0异常处理函数
 void exception_handler_divider(void);
 
 // 设置各种异常函数
@@ -113,7 +113,9 @@ void irq_enable_global(void);
 void irq_disable_global(void);
 void pic_send_eoi(int irq_num);
 
+/// @brief 判断是否进入临界区的状态值
 typedef uint32_t irq_state_t;
+
 irq_state_t irq_enter_protection(void);
 void irq_leave_protection(irq_state_t state);
 #endif

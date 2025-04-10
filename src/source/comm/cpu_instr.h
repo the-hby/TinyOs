@@ -2,26 +2,36 @@
 #define CPU_INSTR_H
 
 /*
-    内联汇编格式：
-        __asm__ __volatile__(
-            "汇编语句"  例如 "inb %[p],%[v]"
-            :要输出到变量中的数据 例如 [v]"=a"(rv) 这里表示将将[v]指定放在ax寄存器中输出到rv变量中
-            :要输入到汇编语句中的数据的数据 例如 [p]"d"(port) 就是将port的数据放入dx中输入
-            另外这里的[p],[v]都是占位符号
-            :这里要放入执行汇编语句除上述两条修改的寄存器，剩下也会修改的寄存器
-        );
+内联汇编格式：
+    __asm__ __volatile__(
+        "汇编语句"  例如 "inb %[p],%[v]"
+        :要输出到变量中的数据 例如 [v]"=a"(rv) 这里表示将将[v]指定放在ax寄存器中输出到rv变量中
+        :要输入到汇编语句中的数据的数据 例如 [p]"d"(port) 就是将port的数据放入dx中输入
+        另外这里的[p],[v]都是占位符号
+        :这里要放入执行汇编语句除上述两条修改的寄存器，剩下也会修改的寄存器
+    );
 */
+
 #include "types.h"
 
+/**
+ * @brief 关闭中断
+ */
 static inline void cli(void){
     __asm__ __volatile__("cli");
 }
 
+/**
+ * @brief 打开中断
+ */
 static inline void sti(void){
     __asm__ __volatile__("sti");
 }
 
-// 注意in和out具体 in指令是指从外部设备读入到cpu 注意别搞反了
+/**
+ * @brief 向端口读取一个字节
+ * @param port 端口号
+ */
 static inline uint8_t inb(uint16_t port){
     uint8_t rv;
     __asm__ __volatile__(
@@ -32,7 +42,10 @@ static inline uint8_t inb(uint16_t port){
     return rv;
 }
 
-
+/**
+ * @brief 向端口写入一个字，16位
+ * @param port 端口号
+ */
 static inline uint16_t inw(uint16_t port){
     uint16_t rv;
     __asm__ __volatile__(
@@ -43,7 +56,11 @@ static inline uint16_t inw(uint16_t port){
     return rv;
 }
 
-
+/**
+ * @brief 向端口输出一个字节
+ * @param port 端口号
+ * @param data 要输出的数据
+ */
 static inline void outb(uint16_t port,uint8_t data){
     __asm__ __volatile(
         "outb %[v],%[p]"
@@ -52,7 +69,11 @@ static inline void outb(uint16_t port,uint8_t data){
     );
 }
 
-// 加载gdt表的函数
+/**
+ * @brief 加载gdt表
+ * @param start gdt表的起始地址
+ * @param size gdt表的大小
+ */
 static inline void lgdt(uint32_t start,uint32_t size){
     // 这里设置的结构体是为了指明lgdt的48位
     // 即32位的地址以及 16位的大小
@@ -72,7 +93,10 @@ static inline void lgdt(uint32_t start,uint32_t size){
     );
 }
 
-// 设置读cr0寄存器
+/**
+ * @brief 读取cr0寄存器
+ * @return cr0寄存器的值 
+ */
 static inline uint32_t read_cr0(void){
     uint32_t cr0;
     __asm__ __volatile__(
@@ -83,7 +107,10 @@ static inline uint32_t read_cr0(void){
     return cr0;
 }
 
-// 设置写cr0寄存器
+/**
+ * @brief 读取cr0寄存器
+ * @return cr0寄存器的值 
+ */
 static inline void write_cr0(uint32_t v){
     __asm__ __volatile__(
         "mov %[v],%%cr0"
@@ -119,7 +146,9 @@ static inline void lidt(uint32_t start,uint32_t size){
     );
 }
 
-// 让cpu暂停指令
+/**
+ * @brief 执行汇编指令hlt
+ */
 static inline void hlt(void){
     __asm__ __volatile("hlt");
 }
@@ -168,6 +197,10 @@ static inline uint32_t read_cr3(void){
     return cr3;
 }
 
+/**
+ * @brief 写入cr4寄存器
+ * @param v 要写入的值
+ */
 static inline void write_cr4(uint32_t v){
     __asm__ __volatile__(
         "mov %[v],%%cr4"
@@ -176,6 +209,10 @@ static inline void write_cr4(uint32_t v){
     );
 }
 
+/**
+ * @brief 读取cr4寄存器
+ * @return cr4寄存器的值 
+*/
 static inline uint32_t read_cr4(void){
     uint32_t cr4;
     __asm__ __volatile__(
@@ -186,6 +223,10 @@ static inline uint32_t read_cr4(void){
     return cr4;
 }
 
+/**
+ * @brief 写入cr2寄存器
+ * @param v 要写入的值
+ */
 static inline void write_cr2(uint32_t v){
     __asm__ __volatile__(
         "mov %[v],%%cr2"
@@ -194,6 +235,10 @@ static inline void write_cr2(uint32_t v){
     );
 }
 
+/**
+ * @brief 读取cr2寄存器
+ * @return cr2寄存器的值
+ */
 static inline uint32_t read_cr2(void){
     uint32_t cr2;
     __asm__ __volatile__(

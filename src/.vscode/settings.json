@@ -24,6 +24,8 @@
         "klib.h": "c",
         "kbd.h": "c",
         "dev.h": "c",
-        "tty.h": "c"
+        "tty.h": "c",
+        "irq.h": "c",
+        "log.h": "c"
     },
 }

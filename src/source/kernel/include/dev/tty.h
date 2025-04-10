@@ -13,7 +13,7 @@
 #define TTY_INCLR      (1<<0) 
 #define TTY_IECHO      (1<<1) // 输入时回显
 
-// 终端设备的个数
+/// @brief 终端设备的个数
 #define TTY_NR  8
 
 typedef struct _tty_fifo_t{
@@ -26,25 +26,33 @@ typedef struct _tty_fifo_t{
     int count;
 }tty_fifo_t;
 
+/** 
+ * @brief tty设备结构体
+ * @param obuf 输出缓存区
+ * @param ibuf 输入缓存区
+ * @param ofifo 输出FIFO队列，用于console显示
+ * @param ififo 输入FIFO队列，用于接收键盘的输入
+ * @param console_index 对应的console的索引号
+ * @param osem 输出信号量
+ * @param isem 输入信号量
+ * @param iflags 输入标志
+ * @param oflags 输出标志
+*/
 typedef struct _tty_t{
     char obuf[TTY_OBUF_SIZE];
     char ibuf[TTY_IBUF_SIZE];
 
-    // 读缓存和写缓存
     tty_fifo_t ofifo;
     tty_fifo_t ififo;
 
-    // 对应的console的索引号
     int console_index;
 
-    // 输出信号量
     sem_t osem;
 
-    // 输入信号量
     sem_t isem;
 
-    int iflags; // 输入标志
-    int oflags; // 输出标志
+    int iflags; 
+    int oflags; 
 }tty_t;
 
 int tty_open(device_t* dev);
@@ -57,5 +65,6 @@ void tty_fifo_init(tty_fifo_t* fifo,char* buf,int size);
 int tty_fifo_put(tty_fifo_t* fifo,char c);
 int tty_fifo_get(tty_fifo_t* fifo,char* c);
 
-void tty_in(int idx,char ch);
+void tty_select(int tty);
+void tty_in(char ch);
 #endif

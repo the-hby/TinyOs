@@ -31,7 +31,9 @@ int main(int argc,char** argv){
 #endif
 
     // 打开tty0设备
-    open("tty:0",0);
+    open(argv[0],0);
+    dup(0);
+    dup(0);
 
     printf("Hello from shell\n");
     

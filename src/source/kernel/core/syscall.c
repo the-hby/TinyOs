@@ -2,7 +2,10 @@
 #include "core/task.h"
 #include "fs/fs.h"
 #include "core/memory.h"
+
+// @brief 系统调用的函数指针，统一以这种方式定义
 typedef int (*syscall_handler_t)(uint32_t arg0,uint32_t arg1,uint32_t arg2,uint32_t arg3);
+
 
 void sys_print_msg(char* fmt,int arg){
     log_printf(fmt,arg);
@@ -22,6 +25,7 @@ static const syscall_handler_t sys_table[]={
     [SYS_ISATTY]=(syscall_handler_t)sys_isatty,
     [SYS_SBRK]=(syscall_handler_t)sys_sbrk,
     [SYS_FSTAT]=(syscall_handler_t)sys_fstat,
+    [SYS_DUP]=(syscall_handler_t)sys_dup,
     [SYS_PRINT_MSG]=(syscall_handler_t)sys_print_msg,
 };
 

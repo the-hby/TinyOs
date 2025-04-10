@@ -42,4 +42,7 @@ source/kernel/CMakeFiles/kernel.dir/init/first_task.c.obj: \
  e:\cppproject\tinyos\newlib\i686-elf\include\sys\_pthreadtypes.h \
  e:\cppproject\tinyos\newlib\i686-elf\include\sys\sched.h \
  e:\cppproject\tinyos\newlib\i686-elf\include\machine\types.h \
- e:\cppproject\tinyos\newlib\i686-elf\include\sys\_locale.h
+ e:\cppproject\tinyos\newlib\i686-elf\include\sys\_locale.h \
+ E:/CppProject/TinyOs/src/source/kernel/include/dev/tty.h \
+ E:/CppProject/TinyOs/src/source/kernel/include/dev/dev.h \
+ E:/CppProject/TinyOs/src/source/kernel/include/ipc/sem.h

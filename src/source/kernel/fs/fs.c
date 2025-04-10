@@ -131,7 +131,7 @@ int sys_read(int file,char* ptr,int len){
 
 // 这里file就是fd
 int sys_write(int file,char* ptr,int len){
-    file=0;
+    // file=0;
 
     file_t* p_file=task_file(file);
     if(!p_file){
@@ -166,4 +166,30 @@ int sys_fstat(int file,struct stat* st){
 
 void fs_init(void){
     file_table_init();
+}
+
+/**
+* @brief 复制文件描述符，返回新的文件描述符
+* @return 新的文件描述符，失败返回-1
+* @param file 旧的文件描述符
+*/
+int sys_dup(int file){
+    if((file<0) && (file>=TASK_OFILE_NR)){
+        return -1;
+    }
+
+    file_t* p_file=task_file(file);
+    if(!p_file){
+        log_printf("file not opened\n");
+        return -1;
+    }
+
+    int fd=task_alloc_fd(p_file);
+    if(fd >= 0){
+        p_file->ref++;
+        return fd;
+    }
+
+    log_printf("alloc fd failed\n");
+    return -1;
 }

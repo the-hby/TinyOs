@@ -142,32 +142,32 @@ void cstart(int argc,char **argv){
   34:	c3                   	ret    
 
 lib_syscall.c.obj:     file format elf32-i386
-rw-rw-rw- 0/0  11616 Mar 23 14:20 2025 lib_syscall.c.obj
+rw-rw-rw- 0/0  11828 Apr 09 00:48 2025 lib_syscall.c.obj
 architecture: i386, flags 0x00000011:
 HAS_RELOC, HAS_SYMS
 start address 0x00000000
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000255  00000000  00000000  00000034  2**0
+  0 .text         00000276  00000000  00000000  00000034  2**0
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000000  00000000  00000000  00000289  2**0
+  1 .data         00000000  00000000  00000000  000002aa  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000000  00000000  00000000  00000289  2**0
+  2 .bss          00000000  00000000  00000000  000002aa  2**0
                   ALLOC
-  3 .debug_info   00000ebe  00000000  00000000  00000289  2**0
+  3 .debug_info   00000ef4  00000000  00000000  000002aa  2**0
                   CONTENTS, RELOC, READONLY, DEBUGGING
-  4 .debug_abbrev 00000227  00000000  00000000  00001147  2**0
+  4 .debug_abbrev 00000243  00000000  00000000  0000119e  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_aranges 00000020  00000000  00000000  0000136e  2**0
+  5 .debug_aranges 00000020  00000000  00000000  000013e1  2**0
                   CONTENTS, RELOC, READONLY, DEBUGGING
-  6 .debug_line   00000236  00000000  00000000  0000138e  2**0
+  6 .debug_line   0000023b  00000000  00000000  00001401  2**0
                   CONTENTS, RELOC, READONLY, DEBUGGING
-  7 .debug_str    00000784  00000000  00000000  000015c4  2**0
+  7 .debug_str    00000784  00000000  00000000  0000163c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .comment      00000012  00000000  00000000  00001d48  2**0
+  8 .comment      00000012  00000000  00000000  00001dc0  2**0
                   CONTENTS, READONLY
-  9 .debug_frame  00000200  00000000  00000000  00001d5c  2**2
+  9 .debug_frame  00000220  00000000  00000000  00001dd4  2**2
                   CONTENTS, RELOC, READONLY, DEBUGGING
 SYMBOL TABLE:
 00000000 l    df *ABS*	00000000 lib_syscall.c
@@ -196,6 +196,7 @@ SYMBOL TABLE:
 000001ec g     F .text	00000021 isatty
 0000020d g     F .text	00000027 fstat
 00000234 g     F .text	00000021 sbrk
+00000255 g     F .text	00000021 dup
 
 
 
@@ -592,5 +593,31 @@ void* sbrk(ptrdiff_t incr){
  24a:	50                   	push   %eax
  24b:	e8 b0 fd ff ff       	call   0 <sys_call>
  250:	83 c4 04             	add    $0x4,%esp
+}
  253:	c9                   	leave  
  254:	c3                   	ret    
+
+00000255 <dup>:
+/*
+* @brief 复制文件描述符
+* @param file 需要复制的文件描述符
+* @return 复制后的文件描述符，失败返回-1
+*/
+int dup(int file){
+ 255:	55                   	push   %ebp
+ 256:	89 e5                	mov    %esp,%ebp
+ 258:	83 ec 20             	sub    $0x20,%esp
+    syscall_args_t args;
+    args.id=SYS_DUP;
+ 25b:	c7 45 ec 3a 00 00 00 	movl   $0x3a,-0x14(%ebp)
+    args.arg0=(int)file;
+ 262:	8b 45 08             	mov    0x8(%ebp),%eax
+ 265:	89 45 f0             	mov    %eax,-0x10(%ebp)
+
+    return sys_call(&args);
+ 268:	8d 45 ec             	lea    -0x14(%ebp),%eax
+ 26b:	50                   	push   %eax
+ 26c:	e8 8f fd ff ff       	call   0 <sys_call>
+ 271:	83 c4 04             	add    $0x4,%esp
+ 274:	c9                   	leave  
+ 275:	c3                   	ret    

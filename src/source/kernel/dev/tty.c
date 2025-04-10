@@ -2,8 +2,12 @@
 #include "tools/log.h"
 #include "dev/kbd.h"
 #include "dev/console.h"
+#include "cpu/irq.h"
 
 static tty_t tty_devs[TTY_NR];
+
+/// @brief 当前tty设备的索引
+static int curr_tty=0;
 
 static tty_t* get_tty(device_t* dev){
     int idx=dev->minor;
@@ -22,8 +26,17 @@ void tty_fifo_init(tty_fifo_t* fifo,char* buf,int size){
     fifo->read=fifo->write=0;
 }
 
+/**
+ * @brief 向tty的输出缓存中写入一个字符
+ * @param fifo tty的输出缓存
+ * @param c 要写入的字符
+ * @return 0 成功，-1 失败
+ */
 int tty_fifo_put(tty_fifo_t* fifo,char c){
+    irq_state_t state=irq_enter_protection();
     if(fifo->count>=fifo->size){
+
+        irq_leave_protection(state);
         return -1;
     }
 
@@ -31,13 +44,16 @@ int tty_fifo_put(tty_fifo_t* fifo,char c){
     if(fifo->write>=fifo->size){
         fifo->write=0;
     }
+    
     fifo->count++;
 
     return 0;
 }
 
 int tty_fifo_get(tty_fifo_t* fifo,char* c){
+    irq_state_t state=irq_enter_protection();
     if(fifo->count<=0){
+        irq_leave_protection(state);
         return -1;
     }
 
@@ -47,6 +63,7 @@ int tty_fifo_get(tty_fifo_t* fifo,char* c){
     }
     fifo->count--;
 
+    irq_leave_protection(state);
     return 0;
 }
 
@@ -159,8 +176,12 @@ void tty_close(device_t* dev){
 
 }
 
-void tty_in(int idx,char ch){
-    tty_t* tty=tty_devs+idx;
+/**
+* @brief 选择curr_tty索引的tty设备，然后将ch放入tty的输入缓存中
+* @param ch 要放入tty设备的输入缓存中的字符
+*/ 
+void tty_in(char ch){
+    tty_t* tty=tty_devs+curr_tty;
 
     if(sem_count(&tty->isem) >= TTY_IBUF_SIZE){
         return;
@@ -169,6 +190,17 @@ void tty_in(int idx,char ch){
     tty_fifo_put(&tty->ififo,ch);
     sem_notify(&tty->isem);
 
+}
+
+/**
+ * @brief 选择tty设备
+ * @param tty 要切换的tty设备的索引号
+*/
+void tty_select(int tty){
+    if(tty!=curr_tty){
+        console_select(tty);
+        curr_tty=tty;
+    }
 }
 
 dev_desc_t dev_tty_desc={

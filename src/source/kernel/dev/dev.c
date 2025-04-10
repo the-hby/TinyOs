@@ -24,7 +24,13 @@ static int is_devid_bad(int dev_id){
     return 0;
 }
 
-// major打开的主设备号，minor从设备号，data向设备传入的参数
+/**
+ * @brief 打开设备
+ * @param major 主设备号
+ * @param minor 从设备号
+ * @param data 设备传入的参数
+ * @return 设备id，失败返回-1
+*/
 int dev_open(int major,int minor,void* data){
     irq_state_t state=irq_enter_protection();
 

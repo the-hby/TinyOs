@@ -13,7 +13,15 @@
 #define KBD_PORT_STAT       0x64
 #define KBD_PORT_CMD        0x64
 
-#define KEY_F1              0x3B
+// @brief 按键F1-F8的键值
+#define KEY_F1			(0x3B)
+#define KEY_F2			(0x3C)
+#define KEY_F3			(0x3D)
+#define KEY_F4			(0x3E)
+#define KEY_F5			(0x3F)
+#define KEY_F6			(0x40)
+#define KEY_F7			(0x41)
+#define KEY_F8			(0x42)
 
 #define KEY_E0              0xE0
 #define KEY_E1              0xE1
