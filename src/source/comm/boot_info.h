@@ -3,11 +3,15 @@
 
 #include "types.h"
 
+/// @brief 定义内存信息的最大个数
 #define BOOT_RAM_REGION_MAX			10		
 
-
+/**
+ * @brief 存储内存信息
+ * @param ram_region_cfg 存储内存信息的数组包含start存储起始地址以及size即这块儿内存大小
+ * @param ram_region_count 存储内存信息的个数
+ */
 typedef struct _boot_info_t {
-    // 存储关于内存信息
     struct {
         uint32_t start;
         uint32_t size;

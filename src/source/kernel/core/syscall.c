@@ -3,7 +3,7 @@
 #include "fs/fs.h"
 #include "core/memory.h"
 
-// @brief 系统调用的函数指针，统一以这种方式定义
+/// @brief 系统调用的函数指针，统一以这种方式定义
 typedef int (*syscall_handler_t)(uint32_t arg0,uint32_t arg1,uint32_t arg2,uint32_t arg3);
 
 
@@ -11,6 +11,7 @@ void sys_print_msg(char* fmt,int arg){
     log_printf(fmt,arg);
 }
 
+/// @brief 系统调用函数表，函数号和函数指针的映射关系
 static const syscall_handler_t sys_table[]={
     [SYS_SLEEP]=(syscall_handler_t)sys_msleep,
     [SYS_GETPID]=(syscall_handler_t)sys_getpid,

@@ -37,7 +37,7 @@ static int update_cursor_pos(console_t* console){
 
     irq_state_t state=irq_enter_protection();
 
-    // 获取低八位和高八位
+    // 0xE和0xF分别是光标的高8位和低8位寄存器
     outb(0x3D4,0xF);
     outb(0x3D5,(uint8_t)(pos & 0xFF));
     outb(0x3D4,0xE);
@@ -392,11 +392,13 @@ void console_select(int idx){
 
     uint16_t pos=idx*console->display_cols*console->display_rows;
 
+    // 向端口 0x3D4 写入值 0xC，这是用于选择 VGA 控制器的初始屏幕的位置的高八位
     outb(0x3D4,0xC);
     
     // 写入高八位
     outb(0x3D5,(uint8_t)((pos >> 8) & 0xFF));
 
+    // 向端口 0x3D4 写入值 0xD，这是用于选择 VGA 控制器的初始屏幕的位置的低八位
     outb(0x3D4,0xD);
 
     // 写入低八位

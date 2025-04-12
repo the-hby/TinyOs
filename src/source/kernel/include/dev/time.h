@@ -6,7 +6,7 @@
 #include "cpu/irq.h"
 #include "core/task.h"
 
-// 定时器时钟源
+/// @brief 定时器时钟源
 #define PIT_OSC_FREQ                 1193182
 
 #define PIT_CHANNEL0_DATA_PORT       0x40

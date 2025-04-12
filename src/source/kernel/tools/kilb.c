@@ -30,7 +30,12 @@ void kernel_strncpy(char* dest,const char* src,unsigned int size){
 }
 
 
-// 比较两个字符串
+/**
+ * @brief 字符串比较函数
+ * @param s1 字符串1
+ * @param s2 字符串2
+ * @param size 比较的长度
+ */
 int kernel_strncmp(const char* s1,const char* s2,unsigned int size){
     if(!s1 || !s2){
         return -1;
@@ -43,7 +48,12 @@ int kernel_strncmp(const char* s1,const char* s2,unsigned int size){
     return !((*s1=='\0') || (*s2=='\0') || (*s1==*s2));
 }
 
-// 获取字符串长度
+/**
+ * @brief 获取字符串的长度
+ * @param str 要获取长度的字符串
+ * @return 字符串的长度
+ * @note 如果字符串为空，返回0
+ */
 int kernel_strlen(const char* str){
     if(!str){
         return 0;

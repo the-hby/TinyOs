@@ -27,9 +27,9 @@ Section Headers:
   [ 3] .data             PROGBITS        00017000 008000 00009c 00  WA  0   0 32
   [ 4] .bss              NOBITS          00018000 00809c 0543e0 00  WA  0   0 4096
   [ 5] .first_task       PROGBITS        80000000 009000 000344 00 WAX  0   0  1
-  [ 6] .debug_line       PROGBITS        00000000 009344 003218 00      0   0  1
-  [ 7] .debug_info       PROGBITS        00000000 00c55c 00bbe5 00      0   0  1
-  [ 8] .debug_abbrev     PROGBITS        00000000 018141 002738 00      0   0  1
+  [ 6] .debug_line       PROGBITS        00000000 009344 00321f 00      0   0  1
+  [ 7] .debug_info       PROGBITS        00000000 00c563 00bbe5 00      0   0  1
+  [ 8] .debug_abbrev     PROGBITS        00000000 018148 002738 00      0   0  1
   [ 9] .debug_aranges    PROGBITS        00000000 01a880 0002e0 00      0   0  8
   [10] .debug_ranges     PROGBITS        00000000 01ab60 0000a8 00      0   0  1
   [11] .debug_str        PROGBITS        00000000 01ac08 0021ab 01  MS  0   0  1

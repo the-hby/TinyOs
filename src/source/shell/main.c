@@ -1,44 +1,63 @@
 #include "lib_syscall.h"
+#include "main.h"
 #include <stdio.h>
+#include <string.h>
+
+/// @brief shell的命令行结构体
+static cli_t cli;
+
+/// @brief 命令行提示词，在提示词后输入命令
+static const char* prompt="sh >>";
 
 char cmd_buf[256];
 
+static int do_help(int argc,char** argv){
+    return 0;
+}
+
+/// @brief 命令列表
+static const cli_cmd_t cmd_list[]={
+    {
+        .name="help",
+        .usage="help -- list supported command",
+        .do_func=do_help
+    }
+};
+
+/**
+ * @brief 命令行的初始化函数
+ * @param prompt 初始化cli_t结构体的prompt成员变量
+ * @param cli_cmd_t 命令列表首地址
+ * @param size 命令列表包含元素个数
+ */
+static void cli_init(const char* prompt,const cli_cmd_t* cmd_list,int size){
+    cli.prompt=prompt;
+    memset(cli.curr_input,0,CLI_INPUT_SIZE);
+    cli.cmd_start=cmd_list;
+    cli.cmd_end=cmd_list+size;
+}
+
+/**
+ * @brief 显示命令行提示词
+ */
+static void show_prompt(void){
+    printf("%s",cli.prompt);
+
+    // 清空缓存
+    fflush(stdout);
+}
+
 int main(int argc,char** argv){
-#if 0
-    sbrk(0);
-    sbrk(100);
-    sbrk(200);
-    sbrk(4096*2+200);
-    sbrk(4096*5+1234);
-    printf("Hello from shell\n");
-
-    printf("abef\b\b\b\bcd\n");
-    printf("abcd\x7f;fg\n");
-    printf("\0337hello,world\0338123\n");
-
-    // 必须加换行符 \n 要不然会跳过这句话的打印出现一些问题，会被缓存
-    printf("\033[31;42mHello,word!\033[39;49m123\n");
-
-    printf("123\033[2DHello,word!\n");  // 光标左移2，1Hello,word!
-    printf("123\033[2CHello,word!\n");  // 光标右移2，123  Hello,word!
-
-    printf("\033[31m");  // ESC [pn m, Hello,world红色，其余绿色
-    printf("\033[10;10H test!\n");  // 定位到10, 10，test!
-    printf("\033[20;20H test!\n");  // 定位到20, 20，test!
-    printf("\033[32;25;39m123\n");  // ESC [pn m, Hello,world红色，其余绿色  
-
-    printf("\033[2J\n");
-#endif
 
     // 打开tty0设备
     open(argv[0],0);
     dup(0);
     dup(0);
 
-    printf("Hello from shell\n");
-    
+    cli_init(prompt,cmd_list,sizeof(cmd_list)/sizeof(cmd_list[0]));
+
     for(;;){
-        gets(cmd_buf);
-        puts(cmd_buf);
+        show_prompt();
+        gets(cli.curr_input);
     }
 }

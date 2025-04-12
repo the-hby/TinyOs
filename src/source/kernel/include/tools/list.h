@@ -1,6 +1,7 @@
 #ifndef LIST_H
 #define LIST_H
 #include "comm/types.h"
+
 typedef struct _list_node_t{
     struct _list_node_t*pre;
     struct _list_node_t*next;

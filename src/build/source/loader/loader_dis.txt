@@ -29,13 +29,13 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
   7 .debug_abbrev 00000331  00000000  00000000  00001fb1  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000309  00000000  00000000  000022e2  2**0
+  8 .debug_line   0000030c  00000000  00000000  000022e2  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000268  00000000  00000000  000025ec  2**2
+  9 .debug_frame  00000268  00000000  00000000  000025f0  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    000003fe  00000000  00000000  00002854  2**0
+ 10 .debug_str    000003fe  00000000  00000000  00002858  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000018  00000000  00000000  00002c52  2**0
+ 11 .debug_ranges 00000018  00000000  00000000  00002c56  2**0
                   CONTENTS, READONLY, DEBUGGING
 SYMBOL TABLE:
 00008000 l    d  .text	00000000 .text
@@ -114,11 +114,11 @@ protect_mode_entry:
     8016:	08 00                	or     %al,(%bx,%si)
 
 00008018 <cli>:
-            :这里要放入执行汇编语句除上述两条修改的寄存器，剩下也会修改的寄存器
-        );
-*/
 #include "types.h"
 
+/**
+ * @brief 关闭中断
+ */
 static inline void cli(void){
     8018:	66 55                	push   %ebp
     801a:	66 89 e5             	mov    %esp,%ebp
@@ -130,11 +130,11 @@ static inline void cli(void){
     8021:	66 c3                	retl   
 
 00008023 <inb>:
-static inline void sti(void){
-    __asm__ __volatile__("sti");
-}
 
-// 注意in和out具体 in指令是指从外部设备读入到cpu 注意别搞反了
+/**
+ * @brief 向端口读取一个字节
+ * @param port 端口号
+ */
 static inline uint8_t inb(uint16_t port){
     8023:	66 55                	push   %ebp
     8025:	66 89 e5             	mov    %esp,%ebp
@@ -158,11 +158,11 @@ static inline uint8_t inb(uint16_t port){
     804b:	66 c3                	retl   
 
 0000804d <outb>:
-    );
-    return rv;
-}
-
-
+/**
+ * @brief 向端口输出一个字节
+ * @param port 端口号
+ * @param data 要输出的数据
+ */
 static inline void outb(uint16_t port,uint8_t data){
     804d:	66 55                	push   %ebp
     804f:	66 89 e5             	mov    %esp,%ebp
@@ -185,8 +185,11 @@ static inline void outb(uint16_t port,uint8_t data){
     8078:	66 c3                	retl   
 
 0000807a <lgdt>:
-
-// 加载gdt表的函数
+/**
+ * @brief 加载gdt表
+ * @param start gdt表的起始地址
+ * @param size gdt表的大小
+ */
 static inline void lgdt(uint32_t start,uint32_t size){
     807a:	66 55                	push   %ebp
     807c:	66 89 e5             	mov    %esp,%ebp
@@ -220,7 +223,10 @@ static inline void lgdt(uint32_t start,uint32_t size){
 
 000080b0 <read_cr0>:
 
-// 设置读cr0寄存器
+/**
+ * @brief 读取cr0寄存器
+ * @return cr0寄存器的值 
+ */
 static inline uint32_t read_cr0(void){
     80b0:	66 55                	push   %ebp
     80b2:	66 89 e5             	mov    %esp,%ebp
@@ -241,7 +247,10 @@ static inline uint32_t read_cr0(void){
 
 000080ca <write_cr0>:
 
-// 设置写cr0寄存器
+/**
+ * @brief 读取cr0寄存器
+ * @return cr0寄存器的值 
+ */
 static inline void write_cr0(uint32_t v){
     80ca:	66 55                	push   %ebp
     80cc:	66 89 e5             	mov    %esp,%ebp

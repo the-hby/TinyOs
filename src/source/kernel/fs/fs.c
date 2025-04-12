@@ -131,8 +131,7 @@ int sys_read(int file,char* ptr,int len){
 
 // 这里file就是fd
 int sys_write(int file,char* ptr,int len){
-    // file=0;
-
+    
     file_t* p_file=task_file(file);
     if(!p_file){
         log_printf("file not opened\n");

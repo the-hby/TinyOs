@@ -25,11 +25,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
   4 .first_task   00000344  80000000  0006c3e0  00009000  2**0
                   CONTENTS, ALLOC, LOAD, CODE
-  5 .debug_line   00003218  00000000  00000000  00009344  2**0
+  5 .debug_line   0000321f  00000000  00000000  00009344  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   0000bbe5  00000000  00000000  0000c55c  2**0
+  6 .debug_info   0000bbe5  00000000  00000000  0000c563  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00002738  00000000  00000000  00018141  2**0
+  7 .debug_abbrev 00002738  00000000  00000000  00018148  2**0
                   CONTENTS, READONLY, DEBUGGING
   8 .debug_aranges 000002e0  00000000  00000000  0001a880  2**3
                   CONTENTS, READONLY, DEBUGGING
@@ -939,11 +939,11 @@ exception_handler_syscall:
    102e2:	ca 14 00             	lret   $0x14
 
 000102e5 <read_cr0>:
-        :[g]"m"(gdt)
-    );
-}
 
-// 设置读cr0寄存器
+/**
+ * @brief 读取cr0寄存器
+ * @return cr0寄存器的值 
+ */
 static inline uint32_t read_cr0(void){
    102e5:	55                   	push   %ebp
    102e6:	89 e5                	mov    %esp,%ebp
@@ -964,7 +964,10 @@ static inline uint32_t read_cr0(void){
 
 000102f6 <write_cr0>:
 
-// 设置写cr0寄存器
+/**
+ * @brief 读取cr0寄存器
+ * @return cr0寄存器的值 
+ */
 static inline void write_cr0(uint32_t v){
    102f6:	55                   	push   %ebp
    102f7:	89 e5                	mov    %esp,%ebp
@@ -1002,11 +1005,11 @@ static inline void write_cr3(uint32_t v){
    1030d:	c3                   	ret    
 
 0001030e <write_cr4>:
-        :
-    );
-    return cr3;
-}
 
+/**
+ * @brief 写入cr4寄存器
+ * @param v 要写入的值
+ */
 static inline void write_cr4(uint32_t v){
    1030e:	55                   	push   %ebp
    1030f:	89 e5                	mov    %esp,%ebp
@@ -1024,6 +1027,10 @@ static inline void write_cr4(uint32_t v){
 
 0001031a <read_cr4>:
 
+/**
+ * @brief 读取cr4寄存器
+ * @return cr4寄存器的值 
+*/
 static inline uint32_t read_cr4(void){
    1031a:	55                   	push   %ebp
    1031b:	89 e5                	mov    %esp,%ebp
@@ -2367,7 +2374,7 @@ char* sys_sbrk(int incr){
 
 00010e02 <sys_print_msg>:
 
-// @brief 系统调用的函数指针，统一以这种方式定义
+/// @brief 系统调用的函数指针，统一以这种方式定义
 typedef int (*syscall_handler_t)(uint32_t arg0,uint32_t arg1,uint32_t arg2,uint32_t arg3);
 
 
@@ -5053,11 +5060,11 @@ static inline void write_eflags(uint32_t eflags){
    12375:	c3                   	ret    
 
 00012376 <read_cr2>:
-        :
-        :[v]"r"(v)
-    );
-}
 
+/**
+ * @brief 读取cr2寄存器
+ * @return cr2寄存器的值
+ */
 static inline uint32_t read_cr2(void){
    12376:	55                   	push   %ebp
    12377:	89 e5                	mov    %esp,%ebp
@@ -6323,7 +6330,7 @@ static int update_cursor_pos(console_t* console){
    12d30:	e8 d8 fe ff ff       	call   12c0d <irq_enter_protection>
    12d35:	89 45 f0             	mov    %eax,-0x10(%ebp)
 
-    // 获取低八位和高八位
+    // 0xE和0xF分别是光标的高8位和低8位寄存器
     outb(0x3D4,0xF);
    12d38:	83 ec 08             	sub    $0x8,%esp
    12d3b:	6a 0f                	push   $0xf
@@ -7617,6 +7624,7 @@ void console_select(int idx){
    13739:	0f af c2             	imul   %edx,%eax
    1373c:	66 89 45 f2          	mov    %ax,-0xe(%ebp)
 
+    // 向端口 0x3D4 写入值 0xC，这是用于选择 VGA 控制器的初始屏幕的位置的高八位
     outb(0x3D4,0xC);
    13740:	83 ec 08             	sub    $0x8,%esp
    13743:	6a 0c                	push   $0xc
@@ -7635,6 +7643,7 @@ void console_select(int idx){
    13766:	e8 e8 f4 ff ff       	call   12c53 <outb>
    1376b:	83 c4 10             	add    $0x10,%esp
 
+    // 向端口 0x3D4 写入值 0xD，这是用于选择 VGA 控制器的初始屏幕的位置的低八位
     outb(0x3D4,0xD);
    1376e:	83 ec 08             	sub    $0x8,%esp
    13771:	6a 0d                	push   $0xd
@@ -7707,8 +7716,11 @@ static int is_devid_bad(int dev_id){
    137ec:	c3                   	ret    
 
 000137ed <dev_open>:
-
-// major打开的主设备号，minor从设备号，data向设备传入的参数
+ * @param major 主设备号
+ * @param minor 从设备号
+ * @param data 设备传入的参数
+ * @return 设备id，失败返回-1
+*/
 int dev_open(int major,int minor,void* data){
    137ed:	55                   	push   %ebp
    137ee:	89 e5                	mov    %esp,%ebp
@@ -8068,10 +8080,10 @@ static inline uint8_t inb(uint16_t port){
 
 00013ac2 <kbd_init>:
 
-};
-
-
-
+/**
+ * @brief 键盘初始化函数，将键盘中断处理函数注册到中断向量表中
+ * @param none
+*/
 void kbd_init(void){
    13ac2:	55                   	push   %ebp
    13ac3:	89 e5                	mov    %esp,%ebp
@@ -8146,7 +8158,7 @@ static inline char get_key(uint8_t key_code){
 00013b40 <do_fx_key>:
 
 /**
- * @brief 根据F1-F8的按键值，切换到对应的屏幕
+ * @brief 根据F1-F8的按键值，切换到对应的屏幕，通过ctrl+F1-F8来切换
  * @param key F1-F8的按键值
 */
 static void do_fx_key(int key){
@@ -8642,7 +8654,7 @@ void time_init(void){
 00013f32 <get_tty>:
 static tty_t tty_devs[TTY_NR];
 
-/// @brief 当前tty设备的索引
+/// @brief 当前使用的tty设备的索引
 static int curr_tty=0;
 
 static tty_t* get_tty(device_t* dev){
@@ -8948,7 +8960,11 @@ int tty_open(device_t* dev){
    141ce:	c3                   	ret    
 
 000141cf <tty_read>:
-
+ * @param addr 读的起始地址，暂时不使用
+ * @param buf 读到的字符存放的地址
+ * @param size 读的字符的个数
+ * @return 读到的字符的个数，失败返回-1
+ */
 int tty_read(device_t* dev,int addr,char* buf,int size){
    141cf:	55                   	push   %ebp
    141d0:	89 e5                	mov    %esp,%ebp
@@ -9863,8 +9879,7 @@ int sys_write(int file,char* ptr,int len){
    14901:	55                   	push   %ebp
    14902:	89 e5                	mov    %esp,%ebp
    14904:	83 ec 18             	sub    $0x18,%esp
-    // file=0;
-
+    
     file_t* p_file=task_file(file);
    14907:	83 ec 0c             	sub    $0xc,%esp
    1490a:	ff 75 08             	pushl  0x8(%ebp)
@@ -10943,9 +10958,11 @@ void kernel_strncpy(char* dest,const char* src,unsigned int size){
    150ea:	c3                   	ret    
 
 000150eb <kernel_strncmp>:
-
-
-// 比较两个字符串
+ * @brief 字符串比较函数
+ * @param s1 字符串1
+ * @param s2 字符串2
+ * @param size 比较的长度
+ */
 int kernel_strncmp(const char* s1,const char* s2,unsigned int size){
    150eb:	55                   	push   %ebp
    150ec:	89 e5                	mov    %esp,%ebp
@@ -11005,8 +11022,11 @@ int kernel_strncmp(const char* s1,const char* s2,unsigned int size){
    15164:	c3                   	ret    
 
 00015165 <kernel_strlen>:
-
-// 获取字符串长度
+ * @brief 获取字符串的长度
+ * @param str 要获取长度的字符串
+ * @return 字符串的长度
+ * @note 如果字符串为空，返回0
+ */
 int kernel_strlen(const char* str){
    15165:	55                   	push   %ebp
    15166:	89 e5                	mov    %esp,%ebp
@@ -11759,6 +11779,10 @@ void list_insert_last(list_t*list,list_node_t*node){
 
 000156e6 <list_remove_first>:
 
+/**
+ * @brief 删除链表的第一个节点
+ * @param list 具体要操作的链表
+ */
 list_node_t* list_remove_first(list_t* list){
    156e6:	55                   	push   %ebp
    156e7:	89 e5                	mov    %esp,%ebp
@@ -11955,11 +11979,11 @@ void log_printf(const char* fmt,...){
    1585c:	68 c4 a3 06 00       	push   $0x6a3c4
    15861:	e8 bf f2 ff ff       	call   14b25 <mutex_lock>
    15866:	83 c4 10             	add    $0x10,%esp
+        outb(COM1_PORT,*p++);
     }
     outb(COM1_PORT,'\r');
     outb(COM1_PORT,'\n');
 #else
-    // console_write(0,str_buf,kernel_strlen(str_buf));
     dev_write(log_dev_id,0,str_buf,kernel_strlen(str_buf));
    15869:	83 ec 0c             	sub    $0xc,%esp
    1586c:	8d 85 78 ff ff ff    	lea    -0x88(%ebp),%eax
@@ -11977,7 +12001,6 @@ void log_printf(const char* fmt,...){
    15892:	83 c4 10             	add    $0x10,%esp
     char c='\n';
    15895:	c6 85 73 ff ff ff 0a 	movb   $0xa,-0x8d(%ebp)
-    // console_write(0,&c,1);
     dev_write(log_dev_id,0,&c,1);
    1589c:	a1 d8 a3 06 00       	mov    0x6a3d8,%eax
    158a1:	6a 01                	push   $0x1
@@ -12506,7 +12529,7 @@ void* sbrk(ptrdiff_t incr){
 80000322:	c3                   	ret    
 
 80000323 <dup>:
-/*
+/** 
 * @brief 复制文件描述符
 * @param file 需要复制的文件描述符
 * @return 复制后的文件描述符，失败返回-1

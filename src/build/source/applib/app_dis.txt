@@ -142,7 +142,7 @@ void cstart(int argc,char **argv){
   34:	c3                   	ret    
 
 lib_syscall.c.obj:     file format elf32-i386
-rw-rw-rw- 0/0  11828 Apr 09 00:48 2025 lib_syscall.c.obj
+rw-rw-rw- 0/0  11828 Apr 12 22:10 2025 lib_syscall.c.obj
 architecture: i386, flags 0x00000011:
 HAS_RELOC, HAS_SYMS
 start address 0x00000000
@@ -598,7 +598,7 @@ void* sbrk(ptrdiff_t incr){
  254:	c3                   	ret    
 
 00000255 <dup>:
-/*
+/** 
 * @brief 复制文件描述符
 * @param file 需要复制的文件描述符
 * @return 复制后的文件描述符，失败返回-1

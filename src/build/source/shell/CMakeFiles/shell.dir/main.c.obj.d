@@ -31,6 +31,10 @@ source/shell/CMakeFiles/shell.dir/main.c.obj: \
  e:\cppproject\tinyos\newlib\i686-elf\include\sys\sched.h \
  e:\cppproject\tinyos\newlib\i686-elf\include\machine\types.h \
  e:\cppproject\tinyos\newlib\i686-elf\include\sys\_locale.h \
+ E:/CppProject/TinyOs/src/source/shell/main.h \
  e:\cppproject\tinyos\newlib\i686-elf\include\stdio.h \
  e:\cppsoft\x86_64-elf-tools-windows\lib\gcc\x86_64-elf\7.1.0\include\stdarg.h \
- e:\cppproject\tinyos\newlib\i686-elf\include\sys\stdio.h
+ e:\cppproject\tinyos\newlib\i686-elf\include\sys\stdio.h \
+ e:\cppproject\tinyos\newlib\i686-elf\include\string.h \
+ e:\cppproject\tinyos\newlib\i686-elf\include\strings.h \
+ e:\cppproject\tinyos\newlib\i686-elf\include\sys\string.h

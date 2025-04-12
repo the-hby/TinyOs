@@ -3,6 +3,7 @@
 
 source/shell/CMakeFiles/shell.dir/main.c.obj
  E:/CppProject/TinyOs/src/source/shell/main.c
+ E:/CppProject/TinyOs/src/source/shell/main.h
  E:/CppProject/TinyOs/newlib/i686-elf/include/_ansi.h
  E:/CppProject/TinyOs/newlib/i686-elf/include/_newlib_version.h
  E:/CppProject/TinyOs/newlib/i686-elf/include/machine/_default_types.h
@@ -14,6 +15,8 @@ source/shell/CMakeFiles/shell.dir/main.c.obj
  E:/CppProject/TinyOs/newlib/i686-elf/include/machine/types.h
  E:/CppProject/TinyOs/newlib/i686-elf/include/newlib.h
  E:/CppProject/TinyOs/newlib/i686-elf/include/stdio.h
+ E:/CppProject/TinyOs/newlib/i686-elf/include/string.h
+ E:/CppProject/TinyOs/newlib/i686-elf/include/strings.h
  E:/CppProject/TinyOs/newlib/i686-elf/include/sys/_locale.h
  E:/CppProject/TinyOs/newlib/i686-elf/include/sys/_pthreadtypes.h
  E:/CppProject/TinyOs/newlib/i686-elf/include/sys/_sigset.h
@@ -30,6 +33,7 @@ source/shell/CMakeFiles/shell.dir/main.c.obj
  E:/CppProject/TinyOs/newlib/i686-elf/include/sys/select.h
  E:/CppProject/TinyOs/newlib/i686-elf/include/sys/stat.h
  E:/CppProject/TinyOs/newlib/i686-elf/include/sys/stdio.h
+ E:/CppProject/TinyOs/newlib/i686-elf/include/sys/string.h
  E:/CppProject/TinyOs/newlib/i686-elf/include/sys/timespec.h
  E:/CppProject/TinyOs/newlib/i686-elf/include/sys/types.h
  E:/CppProject/TinyOs/newlib/i686-elf/include/time.h

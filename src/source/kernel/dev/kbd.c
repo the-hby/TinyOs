@@ -63,7 +63,10 @@ static const key_map_t map_table[]={
 };
 
 
-
+/**
+ * @brief 键盘初始化函数，将键盘中断处理函数注册到中断向量表中
+ * @param none
+*/
 void kbd_init(void){
     static int inited=0;
 
@@ -86,7 +89,7 @@ static inline char get_key(uint8_t key_code){
 }
 
 /**
- * @brief 根据F1-F8的按键值，切换到对应的屏幕
+ * @brief 根据F1-F8的按键值，切换到对应的屏幕，通过ctrl+F1-F8来切换
  * @param key F1-F8的按键值
 */
 static void do_fx_key(int key){

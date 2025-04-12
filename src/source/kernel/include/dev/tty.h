@@ -16,6 +16,14 @@
 /// @brief 终端设备的个数
 #define TTY_NR  8
 
+/**
+ * @brief tty设备的FIFO队列结构体
+ * @param buf 存储FIFO队列的数据区
+ * @param size FIFO队列的大小
+ * @param read 读指针
+ * @param write 写指针
+ * @param count FIFO队列中数据的个数
+ */
 typedef struct _tty_fifo_t{
     char* buf;
     int size;

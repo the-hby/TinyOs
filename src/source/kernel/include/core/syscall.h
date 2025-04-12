@@ -20,7 +20,7 @@
 #define SYS_SBRK           56
 #define SYS_FSTAT          57
 
-// @brief DUP系统调用函数的函数号
+/// @brief DUP系统调用函数的函数号
 #define SYS_DUP            58
 
 typedef struct _syscall_frame_t{

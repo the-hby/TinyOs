@@ -144,7 +144,7 @@ void* sbrk(ptrdiff_t incr){
     return (void*)sys_call(&args);
 }
 
-/*
+/** 
 * @brief 复制文件描述符
 * @param file 需要复制的文件描述符
 * @return 复制后的文件描述符，失败返回-1

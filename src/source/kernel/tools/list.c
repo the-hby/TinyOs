@@ -31,6 +31,10 @@ void list_insert_last(list_t*list,list_node_t*node){
     list->count++;
 }
 
+/**
+ * @brief 删除链表的第一个节点
+ * @param list 具体要操作的链表
+ */
 list_node_t* list_remove_first(list_t* list){
     if(list_is_empty(list)){
         return (list_node_t*)0;

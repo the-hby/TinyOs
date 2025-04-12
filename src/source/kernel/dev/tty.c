@@ -6,7 +6,7 @@
 
 static tty_t tty_devs[TTY_NR];
 
-/// @brief 当前tty设备的索引
+/// @brief 当前使用的tty设备的索引
 static int curr_tty=0;
 
 static tty_t* get_tty(device_t* dev){
@@ -92,6 +92,14 @@ int tty_open(device_t* dev){
     return 0;
 }
 
+/**
+ * @brief tty设备的读函数
+ * @param dev 获取device_t结构体从中取出minor根据minor选择tty设备
+ * @param addr 读的起始地址，暂时不使用
+ * @param buf 读到的字符存放的地址
+ * @param size 读的字符的个数
+ * @return 读到的字符的个数，失败返回-1
+ */
 int tty_read(device_t* dev,int addr,char* buf,int size){
     if(size < 0){
         return -1;
