@@ -5,7 +5,11 @@ __asm__(".code16gcc");
 
 boot_info_t boot_info;			
 
-// BIOS显示字符函数
+/**
+ * @brief 通过BIOS中断显示字符函数
+ * @param msg 显示的字符串
+ * @return void
+ */
 static void show_msg (const char * msg) {
     char c;
 
@@ -21,7 +25,10 @@ static void show_msg (const char * msg) {
 	}
 }
 
-// 检测内存容量函数
+/**
+ * @brief 通过BIOS中断检测内存,将内存信息存储在boot_info结构体中
+ * @return void
+ */
 static void  detect_memory(void) {
 	uint32_t contID = 0;
 	SMAP_entry_t smap_entry;
@@ -68,7 +75,12 @@ uint16_t gdt_table[][4]={
 };
 
 
-// 进入保护模式的函数
+/**
+ * @brief 通过该函数进入保护模式
+ * @return void
+ * @note 该函数会关闭中断，设置A20地址线，加载GDT表，设置CR0寄存器
+ * @note 使用远跳转，清空流水线 跳转Start.S的protect_mode_entry字段
+*/
 static void entry_protect_mode(void){
 	// 关中断
 	cli();
@@ -87,6 +99,14 @@ static void entry_protect_mode(void){
 	// 使用远跳转，清空流水线 跳转Start.S的protect_mode_entry字段
 	far_jump(8,(uint32_t) protect_mode_entry);
 }
+
+/**
+ * @brief 16位代码段入口函数
+ * @return void
+ * @note 该函数会调用detect_memory()和entry_protect_mode()函数
+ * @note 如果远跳转失败该函数会死循环
+*/
+ */
 void loader_entry(void) {
     show_msg("....loading.....\r\n");
 	detect_memory();
