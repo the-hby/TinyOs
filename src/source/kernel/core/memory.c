@@ -3,7 +3,10 @@
 #include "cpu/mmu.h"
 #include "dev/console.h"
 
+/// @brief 物理页分配器
 static addr_alloc_t paddr_alloc;
+
+/// @brief 内核页目录表
 static pde_t kernel_page_dir[PDE_CNT] __attribute__((aligned(MEM_PAGE_SIZE)));
 
 static void addr_alloc_init(addr_alloc_t* alloc,uint8_t* bits,
@@ -26,7 +29,12 @@ static uint32_t addr_alloc_page(addr_alloc_t* alloc,int page_count){
     return addr;
 }
 
-
+/**
+ * @brief 释放页表项对应的物理页
+ * @param alloc 内存页管理器的指针
+ * @param addr 页表项对应的物理页的地址
+ * @param page_count 页表项对应的物理页的数量
+*/
 static void addr_free_page(addr_alloc_t* alloc,uint32_t addr,int page_count){
     mutex_lock(&alloc->mutex);
     uint32_t pg_index=(addr-alloc->start)/alloc->page_size;
@@ -238,6 +246,12 @@ copy_uvm_failed:
     return -1;
 }
 
+/**
+ * @brief 获取页表项对应的物理地址
+ * @param page_dir 获取该页物理地址所使用的页表
+ * @param vaddr 虚拟地址
+ * @return 成功返回物理地址，失败返回0
+*/
 uint32_t memory_get_paddr(uint32_t page_dir,uint32_t vaddr){
     pte_t* pte=find_pte((pde_t*)page_dir,vaddr,0);
     if(!pte){

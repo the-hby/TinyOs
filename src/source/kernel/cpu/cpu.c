@@ -3,9 +3,20 @@
 #include "core/syscall.h"
 #include "cpu/irq.h"
 
+/// @brief gdt表
 static segment_desc_t gdt_table[GDT_TABLE_SIZE];
+
+/// @brief 互斥锁
 static mutex_t mutex;
-// 设置gdt段，selector gdt表的索引，base是段基址，limit是段界限，attr段属性
+
+/**
+ * @brief 设置gdt表项
+ * @param selector gdt表的索引
+ * @param base 段基址
+ * @param limit 段界限
+ * @param attr 段属性
+ * @return void
+*/
 void segment_desc_set(int selector,uint32_t base,uint32_t limit,uint16_t attr){
     segment_desc_t* desc=gdt_table+(selector >> 3);
 
@@ -55,6 +66,10 @@ void cpu_init(void){
     init_gdt();
 }
 
+/**
+ * @brief 分配gdt表项
+ * @return 分配成功返回gdt表项的索引，失败返回-1
+*/
 int gdt_alloc_desc(){
     mutex_lock(&mutex);
     for(int i=1;i<GDT_TABLE_SIZE;i++){

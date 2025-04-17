@@ -16,6 +16,7 @@ typedef struct _cli_cmd_t{
     int (*do_func)(int argc,char** argv);
 }cli_cmd_t;
 
+
 /**
  * @brief 描述命令行的结构体
  * @param curr_input 输入命令缓冲区
@@ -29,5 +30,6 @@ typedef struct _cli_t{
     const cli_cmd_t* cmd_end;
     const char* prompt;
 }cli_t;
+
 
 #endif

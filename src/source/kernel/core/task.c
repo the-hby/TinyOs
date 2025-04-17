@@ -10,6 +10,14 @@ static uint32_t idle_task_stack[IDLE_TASK_SIZE];
 static task_t task_table[TASK_NR];
 static mutex_t table_mutex;
 
+/**
+ * @brief 初始化任务的TSS结构体
+ * @param task TSS结构体对应的任务结构体
+ * @param flag 任务的标志位，设置任务的特权级
+ * @param entry 任务的入口地址
+ * @param esp 任务的栈顶地址
+ * @return 0 成功，-1 失败
+ */
 static int tss_init(task_t* task,int flag,uint32_t entry,uint32_t esp){
     int tss_sel=gdt_alloc_desc();
     if(tss_sel<0){
@@ -536,6 +544,11 @@ exec_failed:
     return -1;
 }
 
+/**
+ * @brief 获取文件描述符对应的文件
+ * @param fd 文件描述符
+ * @return 获取成功返回对应的文件指针，不成功返回NULL
+ */
 file_t* task_file(int fd){
     if((fd>=0) && (fd<TASK_OFILE_NR)){
         file_t* file=task_current()->file_table[fd];
@@ -545,6 +558,11 @@ file_t* task_file(int fd){
     return (file_t*)0;
 }
 
+/**
+ * @brief 给文件分配描述符
+ * @param file 指向一个文件的指针
+ * @return 如果分配成功返回对应的fd如果分配失败返回-1
+ */
 int task_alloc_fd(file_t* file){
     task_t* task=task_current();
 
@@ -559,6 +577,10 @@ int task_alloc_fd(file_t* file){
     return -1;
 }
 
+/**
+ * @brief 释放一个文件描述符
+ * @param fd 要释放的文件描述符
+ */
 void task_remove_fd(int fd){
    if((fd>=0) && (fd<TASK_OFILE_NR)){
        task_current()->file_table[fd]=(file_t*)0;

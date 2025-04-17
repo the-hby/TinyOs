@@ -4,14 +4,22 @@
 #include "comm/types.h"
 #include "comm/cpu_instr.h"
 
+/// @brief 该位的设置表示该页目录项是一个4MB的页表项
 #define PDE_PS 		(1<<7)
+
+/// @brief cr4寄存器的PSE位，支持二级页表
 #define CR4_PSE		(1<<4)
+
+/// @brief cr0寄存器的PG位，支持分页
 #define CR0_PG		(1<<31)
 
+/// @brief 页目录项的数量
 #define PDE_CNT     1024
+
+/// @brief 页表项的数量
 #define PTE_CNT     1024
 
-#define PTE_P       (1<<0)
+#define PTE_P       (1 << 0)
 #define PDE_P       (1 << 1)
 #define PTE_W       (1 << 1)
 #define PDE_W       (1 << 1)
@@ -54,6 +62,11 @@ typedef union _pte_t
 
 }pte_t;
 
+
+/**
+ * @brief 将页目录的物理地址写入cr3寄存器
+ * @param paddr 页目录表的物理地址 
+*/
 static inline void mmu_set_page_dir(uint32_t paddr){
     uint32_t cr4=read_cr4();
 	write_cr4(cr4|CR4_PSE);

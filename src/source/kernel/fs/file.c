@@ -1,8 +1,10 @@
 #include "fs/file.h"
 #include "ipc/mutex.h"
 
+/// @brief 文件表
 static file_t file_table[FILE_TABLE_SIZE]; // 文件表
-static mutex_t file_alloc_mutex; // 文件表的互斥锁
+/// @brief 文件互斥锁
+static mutex_t file_alloc_mutex; 
 
 file_t* file_alloc(void){
     file_t* file=(file_t*)0;

@@ -16,9 +16,27 @@
 
 #define TASK_FLAGS_SYSTEM       (1 << 0)
 
-// 打开的文件表数量
+/// @brief 打开的文件表数量
 #define TASK_OFILE_NR 128
 
+/**
+ * @brief 描述任务的结构体
+ * @param state 任务的状态
+ * @param pid 任务的pid
+ * @param parent 任务的父进程
+ * @param heap_start 任务的堆的起始地址
+ * @param heap_end 任务的堆的结束地址
+ * @param sleep_ticks 任务的睡眠时间片
+ * @param slice_ticks 任务的时间片
+ * @param time_ticks 任务的时间片
+ * @param name 任务的名称
+ * @param run_node 任务在就绪队列中的节点
+ * @param all_node 任务在所有任务链表中的节点
+ * @param wait_node 任务在等待队列中的节点
+ * @param tss 任务的TSS结构体
+ * @param tss_sel 任务的TSS选择子
+ * @param file_table 任务的打开文件表
+ */
 typedef struct _task_t{
     enum{
         TASK_CREATED,
@@ -39,7 +57,6 @@ typedef struct _task_t{
 
     char name[TASK_NAME_SIZE];
 
-    // 打开文件表
     file_t* file_table[TASK_OFILE_NR];
 
     list_node_t run_node;
@@ -92,11 +109,9 @@ int sys_getpid(void);
 int sys_fork(void);
 int sys_execve(char* name,char** argv,char** env);
 
-// 分配文件描述符
+
 int task_alloc_fd(file_t* file);
-// 释放文件描述符
 void task_remove_fd(int fd);
-// 获取文件描述符对应的文件结构体
 file_t* task_file(int fd);
 
 #endif

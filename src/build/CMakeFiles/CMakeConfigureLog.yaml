@@ -39,8 +39,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "E:/CppProject/TinyOs/src/build/CMakeFiles/CMakeScratch/TryCompile-boa66u"
-      binary: "E:/CppProject/TinyOs/src/build/CMakeFiles/CMakeScratch/TryCompile-boa66u"
+      source: "E:/CppProject/TinyOs/src/build/CMakeFiles/CMakeScratch/TryCompile-6vn3m1"
+      binary: "E:/CppProject/TinyOs/src/build/CMakeFiles/CMakeScratch/TryCompile-6vn3m1"
     cmakeVariables:
       CMAKE_C_FLAGS: "-g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables"
       CMAKE_C_FLAGS_DEBUG: "-g"
@@ -49,21 +49,21 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'E:/CppProject/TinyOs/src/build/CMakeFiles/CMakeScratch/TryCompile-boa66u'
+        Change Dir: 'E:/CppProject/TinyOs/src/build/CMakeFiles/CMakeScratch/TryCompile-6vn3m1'
         
-        Run Build Command(s): E:/CppSoft/CMake/bin/cmake.exe -E env VERBOSE=1 E:/CppSoft/x86_64-elf-tools-windows/bin/make.exe -f Makefile cmTC_6a408/fast
-        E:/CppSoft/x86_64-elf-tools-windows/bin/make.exe  -f CMakeFiles/cmTC_6a408.dir/build.make CMakeFiles/cmTC_6a408.dir/build
-        make[1]: Entering directory 'E:/CppProject/TinyOs/src/build/CMakeFiles/CMakeScratch/TryCompile-boa66u'
-        Building C object CMakeFiles/cmTC_6a408.dir/CMakeCCompilerABI.c.obj
-        E:/CppSoft/x86_64-elf-tools-windows/bin/x86_64-elf-gcc.exe   -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables    -v -o CMakeFiles/cmTC_6a408.dir/CMakeCCompilerABI.c.obj -c E:/CppSoft/CMake/share/cmake-3.31/Modules/CMakeCCompilerABI.c
+        Run Build Command(s): E:/CppSoft/CMake/bin/cmake.exe -E env VERBOSE=1 E:/CppSoft/x86_64-elf-tools-windows/bin/make.exe -f Makefile cmTC_03dbb/fast
+        E:/CppSoft/x86_64-elf-tools-windows/bin/make.exe  -f CMakeFiles/cmTC_03dbb.dir/build.make CMakeFiles/cmTC_03dbb.dir/build
+        make[1]: Entering directory 'E:/CppProject/TinyOs/src/build/CMakeFiles/CMakeScratch/TryCompile-6vn3m1'
+        Building C object CMakeFiles/cmTC_03dbb.dir/CMakeCCompilerABI.c.obj
+        E:/CppSoft/x86_64-elf-tools-windows/bin/x86_64-elf-gcc.exe   -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables    -v -o CMakeFiles/cmTC_03dbb.dir/CMakeCCompilerABI.c.obj -c E:/CppSoft/CMake/share/cmake-3.31/Modules/CMakeCCompilerABI.c
         Using built-in specs.
         COLLECT_GCC=E:/CppSoft/x86_64-elf-tools-windows/bin/x86_64-elf-gcc.exe
         Target: x86_64-elf
         Configured with: ../gcc-7.1.0/configure --host=i686-w64-mingw32.static --target=x86_64-elf --disable-nls --enable-languages=c,c++ --without-headers --prefix=/root/build-x86_64-elf/windows/output
         Thread model: single
         gcc version 7.1.0 (GCC) 
-        COLLECT_GCC_OPTIONS='-g' '-c' '-O0' '-m32' '-fno-pie' '-fno-stack-protector' '-fno-asynchronous-unwind-tables' '-v' '-o' 'CMakeFiles/cmTC_6a408.dir/CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64'
-         e:/cppsoft/x86_64-elf-tools-windows/bin/../libexec/gcc/x86_64-elf/7.1.0/cc1.exe -quiet -v -iprefix e:\\cppsoft\\x86_64-elf-tools-windows\\bin\\../lib/gcc/x86_64-elf/7.1.0/ E:/CppSoft/CMake/share/cmake-3.31/Modules/CMakeCCompilerABI.c -quiet -dumpbase CMakeCCompilerABI.c -m32 -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_6a408.dir/CMakeCCompilerABI.c.obj -g -O0 -version -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -o C:\\Users\\32063\\AppData\\Local\\Temp\\ccNTldpi.s
+        COLLECT_GCC_OPTIONS='-g' '-c' '-O0' '-m32' '-fno-pie' '-fno-stack-protector' '-fno-asynchronous-unwind-tables' '-v' '-o' 'CMakeFiles/cmTC_03dbb.dir/CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64'
+         e:/cppsoft/x86_64-elf-tools-windows/bin/../libexec/gcc/x86_64-elf/7.1.0/cc1.exe -quiet -v -iprefix e:\\cppsoft\\x86_64-elf-tools-windows\\bin\\../lib/gcc/x86_64-elf/7.1.0/ E:/CppSoft/CMake/share/cmake-3.31/Modules/CMakeCCompilerABI.c -quiet -dumpbase CMakeCCompilerABI.c -m32 -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_03dbb.dir/CMakeCCompilerABI.c.obj -g -O0 -version -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables -o C:\\Users\\32063\\AppData\\Local\\Temp\\cc75d0BI.s
         GNU C11 (GCC) version 7.1.0 (x86_64-elf)
         	compiled by GNU C version 5.5.0, GMP version 6.1.0, MPFR version 3.1.4, MPC version 1.0.3, isl version isl-0.16.1-GMP
         
@@ -84,15 +84,15 @@ events:
         
         GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
         Compiler executable checksum: b00064cd55ffce4efe95d0fcd6948296
-        COLLECT_GCC_OPTIONS='-g' '-c' '-O0' '-m32' '-fno-pie' '-fno-stack-protector' '-fno-asynchronous-unwind-tables' '-v' '-o' 'CMakeFiles/cmTC_6a408.dir/CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64'
-         e:/cppsoft/x86_64-elf-tools-windows/bin/../lib/gcc/x86_64-elf/7.1.0/../../../../x86_64-elf/bin/as.exe --32 -o CMakeFiles/cmTC_6a408.dir/CMakeCCompilerABI.c.obj C:\\Users\\32063\\AppData\\Local\\Temp\\ccNTldpi.s
+        COLLECT_GCC_OPTIONS='-g' '-c' '-O0' '-m32' '-fno-pie' '-fno-stack-protector' '-fno-asynchronous-unwind-tables' '-v' '-o' 'CMakeFiles/cmTC_03dbb.dir/CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64'
+         e:/cppsoft/x86_64-elf-tools-windows/bin/../lib/gcc/x86_64-elf/7.1.0/../../../../x86_64-elf/bin/as.exe --32 -o CMakeFiles/cmTC_03dbb.dir/CMakeCCompilerABI.c.obj C:\\Users\\32063\\AppData\\Local\\Temp\\cc75d0BI.s
         COMPILER_PATH=e:/cppsoft/x86_64-elf-tools-windows/bin/../libexec/gcc/x86_64-elf/7.1.0/;e:/cppsoft/x86_64-elf-tools-windows/bin/../libexec/gcc/;e:/cppsoft/x86_64-elf-tools-windows/bin/../lib/gcc/x86_64-elf/7.1.0/../../../../x86_64-elf/bin/
         LIBRARY_PATH=e:/cppsoft/x86_64-elf-tools-windows/bin/../lib/gcc/x86_64-elf/7.1.0/;e:/cppsoft/x86_64-elf-tools-windows/bin/../lib/gcc/;e:/cppsoft/x86_64-elf-tools-windows/bin/../lib/gcc/x86_64-elf/7.1.0/../../../../x86_64-elf/lib/
-        COLLECT_GCC_OPTIONS='-g' '-c' '-O0' '-m32' '-fno-pie' '-fno-stack-protector' '-fno-asynchronous-unwind-tables' '-v' '-o' 'CMakeFiles/cmTC_6a408.dir/CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64'
-        Linking C executable cmTC_6a408.exe
-        E:/CppSoft/CMake/bin/cmake.exe -E rm -f CMakeFiles/cmTC_6a408.dir/objects.a
-        E:/CppSoft/x86_64-elf-tools-windows/bin/x86_64-elf-ar.exe qc CMakeFiles/cmTC_6a408.dir/objects.a @CMakeFiles/cmTC_6a408.dir/objects1.rsp
-        E:/CppSoft/x86_64-elf-tools-windows/bin/x86_64-elf-gcc.exe -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables   -v -Wl,-v -Wl,--whole-archive CMakeFiles/cmTC_6a408.dir/objects.a -Wl,--no-whole-archive -o cmTC_6a408.exe -Wl,--out-implib,libcmTC_6a408.dll.a -Wl,--major-image-version,0,--minor-image-version,0
+        COLLECT_GCC_OPTIONS='-g' '-c' '-O0' '-m32' '-fno-pie' '-fno-stack-protector' '-fno-asynchronous-unwind-tables' '-v' '-o' 'CMakeFiles/cmTC_03dbb.dir/CMakeCCompilerABI.c.obj' '-c' '-mtune=generic' '-march=x86-64'
+        Linking C executable cmTC_03dbb.exe
+        E:/CppSoft/CMake/bin/cmake.exe -E rm -f CMakeFiles/cmTC_03dbb.dir/objects.a
+        E:/CppSoft/x86_64-elf-tools-windows/bin/x86_64-elf-ar.exe qc CMakeFiles/cmTC_03dbb.dir/objects.a @CMakeFiles/cmTC_03dbb.dir/objects1.rsp
+        E:/CppSoft/x86_64-elf-tools-windows/bin/x86_64-elf-gcc.exe -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables   -v -Wl,-v -Wl,--whole-archive CMakeFiles/cmTC_03dbb.dir/objects.a -Wl,--no-whole-archive -o cmTC_03dbb.exe -Wl,--out-implib,libcmTC_03dbb.dll.a -Wl,--major-image-version,0,--minor-image-version,0
         Using built-in specs.
         COLLECT_GCC=E:/CppSoft/x86_64-elf-tools-windows/bin/x86_64-elf-gcc.exe
         Target: x86_64-elf
@@ -101,9 +101,9 @@ events:
         gcc version 7.1.0 (GCC) 
         COMPILER_PATH=e:/cppsoft/x86_64-elf-tools-windows/bin/../libexec/gcc/x86_64-elf/7.1.0/;e:/cppsoft/x86_64-elf-tools-windows/bin/../libexec/gcc/;e:/cppsoft/x86_64-elf-tools-windows/bin/../lib/gcc/x86_64-elf/7.1.0/../../../../x86_64-elf/bin/
         LIBRARY_PATH=e:/cppsoft/x86_64-elf-tools-windows/bin/../lib/gcc/x86_64-elf/7.1.0/;e:/cppsoft/x86_64-elf-tools-windows/bin/../lib/gcc/;e:/cppsoft/x86_64-elf-tools-windows/bin/../lib/gcc/x86_64-elf/7.1.0/../../../../x86_64-elf/lib/
-        COLLECT_GCC_OPTIONS='-g' '-c' '-O0' '-m32' '-fno-pie' '-fno-stack-protector' '-fno-asynchronous-unwind-tables' '-v' '-o' 'cmTC_6a408.exe' '-mtune=generic' '-march=x86-64'
-        x86_64-elf-gcc.exe: warning: CMakeFiles/cmTC_6a408.dir/objects.a: linker input file unused because linking not done
-        make[1]: Leaving directory 'E:/CppProject/TinyOs/src/build/CMakeFiles/CMakeScratch/TryCompile-boa66u'
+        COLLECT_GCC_OPTIONS='-g' '-c' '-O0' '-m32' '-fno-pie' '-fno-stack-protector' '-fno-asynchronous-unwind-tables' '-v' '-o' 'cmTC_03dbb.exe' '-mtune=generic' '-march=x86-64'
+        x86_64-elf-gcc.exe: warning: CMakeFiles/cmTC_03dbb.dir/objects.a: linker input file unused because linking not done
+        make[1]: Leaving directory 'E:/CppProject/TinyOs/src/build/CMakeFiles/CMakeScratch/TryCompile-6vn3m1'
         
       exitCode: 0
   -
@@ -114,8 +114,8 @@ events:
     checks:
       - "Check for working C compiler: E:/CppSoft/x86_64-elf-tools-windows/bin/x86_64-elf-gcc.exe"
     directories:
-      source: "E:/CppProject/TinyOs/src/build/CMakeFiles/CMakeScratch/TryCompile-tm6abh"
-      binary: "E:/CppProject/TinyOs/src/build/CMakeFiles/CMakeScratch/TryCompile-tm6abh"
+      source: "E:/CppProject/TinyOs/src/build/CMakeFiles/CMakeScratch/TryCompile-7yxpmf"
+      binary: "E:/CppProject/TinyOs/src/build/CMakeFiles/CMakeScratch/TryCompile-7yxpmf"
     cmakeVariables:
       CMAKE_C_FLAGS: "-g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables"
       CMAKE_C_FLAGS_DEBUG: "-g"
@@ -124,19 +124,19 @@ events:
       variable: "CMAKE_C_COMPILER_WORKS"
       cached: true
       stdout: |
-        Change Dir: 'E:/CppProject/TinyOs/src/build/CMakeFiles/CMakeScratch/TryCompile-tm6abh'
+        Change Dir: 'E:/CppProject/TinyOs/src/build/CMakeFiles/CMakeScratch/TryCompile-7yxpmf'
         
-        Run Build Command(s): E:/CppSoft/CMake/bin/cmake.exe -E env VERBOSE=1 E:/CppSoft/x86_64-elf-tools-windows/bin/make.exe -f Makefile cmTC_53a52/fast
-        E:/CppSoft/x86_64-elf-tools-windows/bin/make.exe  -f CMakeFiles/cmTC_53a52.dir/build.make CMakeFiles/cmTC_53a52.dir/build
-        make[1]: Entering directory 'E:/CppProject/TinyOs/src/build/CMakeFiles/CMakeScratch/TryCompile-tm6abh'
-        Building C object CMakeFiles/cmTC_53a52.dir/testCCompiler.c.obj
-        E:/CppSoft/x86_64-elf-tools-windows/bin/x86_64-elf-gcc.exe   -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -o CMakeFiles/cmTC_53a52.dir/testCCompiler.c.obj -c E:/CppProject/TinyOs/src/build/CMakeFiles/CMakeScratch/TryCompile-tm6abh/testCCompiler.c
-        Linking C executable cmTC_53a52.exe
-        E:/CppSoft/CMake/bin/cmake.exe -E rm -f CMakeFiles/cmTC_53a52.dir/objects.a
-        E:/CppSoft/x86_64-elf-tools-windows/bin/x86_64-elf-ar.exe qc CMakeFiles/cmTC_53a52.dir/objects.a @CMakeFiles/cmTC_53a52.dir/objects1.rsp
-        E:/CppSoft/x86_64-elf-tools-windows/bin/x86_64-elf-gcc.exe -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -Wl,--whole-archive CMakeFiles/cmTC_53a52.dir/objects.a -Wl,--no-whole-archive -o cmTC_53a52.exe -Wl,--out-implib,libcmTC_53a52.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_53a52.dir/linkLibs.rsp
-        x86_64-elf-gcc.exe: warning: CMakeFiles/cmTC_53a52.dir/objects.a: linker input file unused because linking not done
-        make[1]: Leaving directory 'E:/CppProject/TinyOs/src/build/CMakeFiles/CMakeScratch/TryCompile-tm6abh'
+        Run Build Command(s): E:/CppSoft/CMake/bin/cmake.exe -E env VERBOSE=1 E:/CppSoft/x86_64-elf-tools-windows/bin/make.exe -f Makefile cmTC_4f84d/fast
+        E:/CppSoft/x86_64-elf-tools-windows/bin/make.exe  -f CMakeFiles/cmTC_4f84d.dir/build.make CMakeFiles/cmTC_4f84d.dir/build
+        make[1]: Entering directory 'E:/CppProject/TinyOs/src/build/CMakeFiles/CMakeScratch/TryCompile-7yxpmf'
+        Building C object CMakeFiles/cmTC_4f84d.dir/testCCompiler.c.obj
+        E:/CppSoft/x86_64-elf-tools-windows/bin/x86_64-elf-gcc.exe   -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -o CMakeFiles/cmTC_4f84d.dir/testCCompiler.c.obj -c E:/CppProject/TinyOs/src/build/CMakeFiles/CMakeScratch/TryCompile-7yxpmf/testCCompiler.c
+        Linking C executable cmTC_4f84d.exe
+        E:/CppSoft/CMake/bin/cmake.exe -E rm -f CMakeFiles/cmTC_4f84d.dir/objects.a
+        E:/CppSoft/x86_64-elf-tools-windows/bin/x86_64-elf-ar.exe qc CMakeFiles/cmTC_4f84d.dir/objects.a @CMakeFiles/cmTC_4f84d.dir/objects1.rsp
+        E:/CppSoft/x86_64-elf-tools-windows/bin/x86_64-elf-gcc.exe -g -c -O0 -m32 -fno-pie -fno-stack-protector -fno-asynchronous-unwind-tables  -Wl,--whole-archive CMakeFiles/cmTC_4f84d.dir/objects.a -Wl,--no-whole-archive -o cmTC_4f84d.exe -Wl,--out-implib,libcmTC_4f84d.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/cmTC_4f84d.dir/linkLibs.rsp
+        x86_64-elf-gcc.exe: warning: CMakeFiles/cmTC_4f84d.dir/objects.a: linker input file unused because linking not done
+        make[1]: Leaving directory 'E:/CppProject/TinyOs/src/build/CMakeFiles/CMakeScratch/TryCompile-7yxpmf'
         
       exitCode: 0
   -
